@@ -1,0 +1,8 @@
+#python compiled files
+*.pyc
+
+#virtual env files
+venv/
+
+#Local Docs files
+local-docs/
