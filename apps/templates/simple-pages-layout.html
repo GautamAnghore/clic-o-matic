@@ -1,0 +1,12 @@
+{% extends "base-layout.html" %}
+
+{% block includes %}
+	{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/simple-layout.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="footer">
+		clic-o-matic 
+	</div>
+{% endblock %}

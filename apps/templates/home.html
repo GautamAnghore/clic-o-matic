@@ -1,0 +1,15 @@
+{% extends "simple-pages-layout.html" %}
+
+{% block title %}
+clic-o-matic
+{% endblock %}
+
+{% block includes%}
+	{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+	<h1>clic-o-matic</h1>
+	{{ super() }}
+{% endblock %}
