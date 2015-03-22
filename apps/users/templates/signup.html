@@ -1,0 +1,32 @@
+{% extends "simple-pages-layout.html" %}
+
+{% block title %}
+SignUp - clic-o-matic
+{% endblock %}
+
+{% block includes %}
+	{{ super() }}
+	<link rel="stylesheet" href=" {{ url_for('.static',filename='css/users.css') }}">
+{% endblock %}
+
+{% block body %}
+	
+	<div class="signup-form-wrapper">
+		{% from "_formhelper.html" import render_field %}
+		<form class="form-horizontal" method="post" action="{{ url_for('.signup') }}">
+			{{ form.hidden_tag() }}
+			{{ render_field(form.username,placeholder="Username",required="required", id="username") }}
+			
+			{{ render_field(form.password,placeholder="Password",required="required", id="password") }}
+
+			{{ render_field(form.confirm,placeholder="Confirm Password",required="required", id="confirm-password") }}
+
+			{{ render_field(form.email,placeholder="you@domain.com", id="email") }}
+
+			<input type="submit" value="signup" />
+		</form>
+		
+	</div>
+	{{ super() }}
+{% endblock %}
+
