@@ -16,13 +16,13 @@ SignUp - clic-o-matic
 		<form class="form-horizontal" method="post" action="{{ url_for('.signup') }}">
 			{{ form.hidden_tag() }}
 			{{ render_field(form.username,placeholder="Username",required="required", id="username") }}
-			
+			<br/>
 			{{ render_field(form.password,placeholder="Password",required="required", id="password") }}
-
+			<br/>
 			{{ render_field(form.confirm,placeholder="Confirm Password",required="required", id="confirm-password") }}
-
+			<br/>
 			{{ render_field(form.email,placeholder="you@domain.com", id="email") }}
-
+			<br/>
 			<input type="submit" value="signup" />
 		</form>
 		
