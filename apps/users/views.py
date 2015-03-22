@@ -17,3 +17,8 @@ def signup():
     else:
         # show the form to signup
         return render_template('signup.html', form=SignupForm())
+
+
+@users.route('/login', methods=['GET', 'POST'])
+def login():
+    return "True"
