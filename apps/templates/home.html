@@ -10,6 +10,46 @@ clic-o-matic
 {% endblock %}
 
 {% block body %}
-	<h1>clic-o-matic</h1>
+	<div class="site-container">
+        <div class="header">
+            <div class="login-btn">
+                <a href="{{ url_for('users.login') }}" role="button" class="btn btn-primary btn-lg ">Login</a>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <h1>clic-o-matic</h1>
+            <span class="heading-desc">silently observe click behaviour of your visitors with heatmap and click-o-graph</span>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <center>
+                    <div class="heatmap-icon img-circle">
+                        <span class="heatmap-h">H</span>
+                </div>
+                </center>
+                <div class="heatmap-content">
+                    <center><h2>Heatmap</h2></center>
+                    Using clic-o-matic, you can view the heatmap of clicks by the user on various webpages of your website. Heatmaps let you identify the hot-spots of attraction from users viewpoint.
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+               <center>
+                    <div class="clickograph-icon img-circle">
+                        <span class="clickograph-c">C</span>
+                </div>
+                </center>
+                <div class="clickograph-content">
+                    <center><h2>Click-o-Graph</h2></center>
+                    There is also an option to view the a graph with exact positions marked where the users visiting your website clicked.
+                </div>
+            </div>
+        </div>
+        <div id="signup-div" class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="{{ url_for('users.signup') }}" id="signup-link" class="btn btn-primary btn-lg btn-block">Get Started</a>
+            </div>
+        </div>
 	{{ super() }}
+	</div>
 {% endblock %}

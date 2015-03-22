@@ -37,7 +37,10 @@
 	</style>
 
 	{% block includes %}
-
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap-3.1.1-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 	{% endblock %}
 
 </head>
@@ -46,6 +49,7 @@
 	{% block body %}
 
 	{% endblock %}
-
+	<script type="text/javascript" src="{{ url_for('static', filename='lib/jQuery/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='lib/bootstrap-3.1.1-dist/js/bootstrap.min.js') }}"></script>
 </body>
 </html>
