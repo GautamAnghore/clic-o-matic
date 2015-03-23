@@ -4,10 +4,12 @@ from apps.users import users
 from forms import *
 
 from apps import database
+from apps import Sessions
 
 import db
 
 user = db.User(database)
+sessions = Sessions()
 
 
 @users.route('/signup', methods=['GET', 'POST'])
@@ -28,6 +30,7 @@ def signup():
                                         form.password.data)
 
             if success is True:
+                sessions.push_username(form.username.data)
                 # temperory
                 # flag : bug stage 1
                 return redirect(url_for(master.index))
@@ -42,8 +45,13 @@ def signup():
             return render_template('signup.html', form=form)
     else:
         # get request
-        # show the form to signup
-        return render_template('signup.html', form=SignupForm())
+        if sessions.logged_in() is not None:
+            # flag : stage 3
+            # flag : bug [ return to dashboard, alert already signed in ]
+            return redirect(url_for('master.index'))
+        else:
+            # show the form to signup
+            return render_template('signup.html', form=SignupForm())
 
 
 @users.route('/login', methods=['GET', 'POST'])
@@ -56,6 +64,7 @@ def login():
             loggedin = user.check_user(form.username.data, form.password.data)
 
             if loggedin is not None:
+                sessions.push_username(form.username.data)
                 # flag : stage 1
                 # flag : bug [ add user to session ]
                 return "Logged In"
@@ -69,6 +78,9 @@ def login():
             # alert.error('Please Provide Appropriate Details')
             return render_template('login.html', form=form)
     else:
-        # flag : stage 2
-        # flag : bug [ add check for already signed in ]
-        return render_template('login.html', form=LoginForm())
+        if sessions.logged_in() is not None:
+            # flag : stage 3
+            # flag : bug [ return to dashboard, alert already signed in ]
+            return redirect(url_for('master.index'))
+        else:
+            return render_template('login.html', form=LoginForm())
