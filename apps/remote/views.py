@@ -15,3 +15,6 @@ remoteDb = db.Remote(database)
 def remotedata():
     if request.json is not None:
         remoteDb.add_dump(request.json)
+        return 'data posted'
+    else:
+        return 'error in server, data not posted'
