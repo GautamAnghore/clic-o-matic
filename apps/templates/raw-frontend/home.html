@@ -93,9 +93,14 @@
         
         document.body.onclick = function (event) {
             
-            clickdata = {
-                            'x': event.layerX,
-                            'y': event.layerY
+            var pageurl = location.protocol+'//'+location.hostname+(location.port ?':'+location.port:'')+location.pathname;
+            
+            clicodata = {
+                'pageurl': pageurl,
+                'datapoint': {
+                                'x': event.layerX,
+                                'y': event.layerY 
+                }
             }
             
             var xhr = createCORSRequest('POST', url);
@@ -103,7 +108,7 @@
               throw new Error('CORS not supported');
             }
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(clickdata));
+            xhr.send(JSON.stringify(clicodata));
         }
         
         
