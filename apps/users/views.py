@@ -48,4 +48,27 @@ def signup():
 
 @users.route('/login', methods=['GET', 'POST'])
 def login():
-    return "True"
+
+    if request.method == 'POST':
+        form = LoginForm(request.form)
+
+        if form.validate():
+            loggedin = user.check_user(form.username.data, form.password.data)
+
+            if loggedin is not None:
+                # flag : stage 1
+                # flag : bug [ add user to session ]
+                return "Logged In"
+            else:
+                # flag : stage 2
+                # add something like alert.error('Wrong Credentials')
+                return render_template('login.html', form=form)
+
+        else:
+            # flag : stage 2
+            # alert.error('Please Provide Appropriate Details')
+            return render_template('login.html', form=form)
+    else:
+        # flag : stage 2
+        # flag : bug [ add check for already signed in ]
+        return render_template('login.html', form=LoginForm())

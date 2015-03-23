@@ -19,3 +19,12 @@ class SignupForm(Form):
 
     email = TextField('Email',
                       validators=[Email('Not a valid mail address')])
+
+
+class LoginForm(Form):
+
+    username = TextField('Username',
+                         validators=[Required('Please Provide username')])
+
+    password = PasswordField('Password',
+                             validators=[Required('Please provide a password')])

@@ -1,7 +1,7 @@
 {% extends "simple-pages-layout.html" %}
 
 {% block title %}
-SignUp : clic-o-matic
+Login : clic-o-matic
 {% endblock %}
 
 {% block includes %}
@@ -11,19 +11,15 @@ SignUp : clic-o-matic
 
 {% block body %}
 	
-	<div class="signup-form-wrapper">
+	<div class="login-form-wrapper">
 		{% from "_formhelper.html" import render_field %}
-		<form class="form-horizontal" method="post" action="{{ url_for('.signup') }}">
+		<form class="form-horizontal" method="post" action="{{ url_for('.login') }}">
 			{{ form.hidden_tag() }}
 			{{ render_field(form.username,placeholder="Username",required="required", id="username") }}
 			<br/>
 			{{ render_field(form.password,placeholder="Password",required="required", id="password") }}
 			<br/>
-			{{ render_field(form.confirm,placeholder="Confirm Password",required="required", id="confirm-password") }}
-			<br/>
-			{{ render_field(form.email,placeholder="you@domain.com", id="email") }}
-			<br/>
-			<input type="submit" value="signup" />
+			<input type="submit" value="Login" />
 		</form>
 		
 	</div>
