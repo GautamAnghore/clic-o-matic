@@ -15,7 +15,7 @@ class User():
     def add_user(self, username, password, fullName, email=None):
         safe_password = self.secure_password(password)
 
-        user = {'_id': username, 'password': safe_password}
+        user = {'_id': username, 'password': safe_password, 'pages': []}
 
         if email is not None:
             user['email'] = email
@@ -57,3 +57,26 @@ class User():
             return None
 
         return user
+
+    def add_page(self, username, pageurl):
+
+        try:
+            self.users.update({'username': username},
+                              {'$addToSet': {'pages': pageurl}})
+        except pymongo.errors.OperationFailure:
+            print "pymongo error : cannot insert page url"
+            return False
+
+        return True
+
+    def check_page_exists(self, pageurl):
+        try:
+            page = self.users.find_one({'pages': pageurl})
+        except:
+            print "pymongo error: page does not exists"
+            return False
+
+        if page is not None:
+            return True
+        else:
+            return False
