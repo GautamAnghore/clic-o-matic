@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Home</title>
+    
+    <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="lib/smartmenus/addons/jquery.smartmenus.bootstrap.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+</head>
+<body>
+
+    <div class="site-container">
+        <div class="frame-container">
+            <iframe id="foreign-iframe" frameborder="0" src="http://127.0.0.1:58261/apps/templates/raw-frontend/home.html"></iframe>
+        </div>
+    </div>   
+        <!-- Static navbar -->
+            <div class="dashboard navbar navbar-default navbar-fixed-bottom" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand white-font" href="#"><b>clic-o-matic</b></a>
+              </div>
+              <div class="navbar-collapse collapse">
+
+                <!-- Left nav -->
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#" class="white-font">Heatmap</a></li>
+                  <li><a href="#" class="white-font">Click-o-Graph</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#" class="white-font">Page: {{selected}} </a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>    
+                            <li><a href="#">Page 3</a></li>
+                            
+                        </ul>
+                  </li>
+                </ul>
+                  
+
+                <!-- Right nav -->
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="#" class="white-font">Menu</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Options</li>
+                            <li><a href="#">Add Page</a></li>
+                            <li><a href="#">Clear Dataset</a></li>    
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Profile</li>
+                            <li><a href="#">SignOut</a></li>
+                            
+                        </ul>
+                      </li>
+                  
+                    
+                  </ul>
+
+              </div><!--/.nav-collapse -->
+            </div>
+            
+       
+    </div>
+    
+    <script type="text/javascript" src="lib/jQuery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/smartmenus/jquery.smartmenus.min.js"></script>
+    <script type="text/javascript" src="lib/smartmenus/addons/jquery.smartmenus.bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var resizeForeignFrame = function (event) {
+            var heightJSON = JSON.parse(event.data);
+            console.log(heightJSON);
+            document.querySelector("#foreign-iframe").style.height=heightJSON["height"] + "px";
+        }
+        window.addEventListener("message",resizeForeignFrame,false);
+    </script>
+</body>
+</html>

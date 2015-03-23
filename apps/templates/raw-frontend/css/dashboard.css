@@ -1,0 +1,51 @@
+body {
+    width:100%;
+}
+
+.site-container {
+    width:100%;
+}
+
+.frame-container {
+    
+}
+
+#foreign-iframe {
+    width:100%;   
+}
+
+.dashboard {
+    background-image: linear-gradient(to bottom,#f65a5b 0,#db3340 100%);
+}
+
+.white-font {
+    color:#fff !important;
+    margin-left:20px;
+    margin-right:60px;
+    font-size: 18px;
+    font-weight: 200;
+    text-shadow: none !important;
+}
+.white-font b {
+    font-weight: 100;
+    font-size:35px;
+    color:#9a0000;
+}
+
+.white-font:hover {
+    color:#ffacac !important;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background-image: none !important;
+    background-color: #e02e2e !important;
+}
+
+.navbar-default .navbar-nav>.open>a {
+    background-color: #e02e2e !important;   
+}
+
+.nav .open>a {
+    background-color: transparent;
+}
+

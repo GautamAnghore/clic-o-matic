@@ -65,6 +65,10 @@
     <script type="text/javascript" src="lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
     
     <script type="text/javascript">
+        var url="http://127.0.0.1:58261"; //url of app
+        //for sending content height to iframe
+        parent.postMessage('{ "height":'+ document.body.scrollHeight +'}',url);
+        
         function createCORSRequest(method, url) {
           var xhr = new XMLHttpRequest();
           if ("withCredentials" in xhr) {
@@ -89,7 +93,7 @@
           return xhr;
         }
         
-        var url="http://localhost:5000/remotedata";
+        var data_url=url + "/remotedata";
         
         document.body.onclick = function (event) {
             
@@ -103,12 +107,12 @@
                 }
             }
             
-            var xhr = createCORSRequest('POST', url);
+            var xhr = createCORSRequest('POST', data_url);
             if (!xhr) {
               throw new Error('CORS not supported');
             }
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(clicodata));
+            //xhr.send(JSON.stringify(clicodata));
         }
         
         
