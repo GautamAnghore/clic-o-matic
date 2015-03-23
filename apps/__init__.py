@@ -23,6 +23,9 @@ from views import *
 
 # import users blueprint
 from users import users
+# import remote blueprint
+from remote import remote
 
 app.register_blueprint(master)
 app.register_blueprint(users)
+app.register_blueprint(remote)
