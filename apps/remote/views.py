@@ -14,7 +14,7 @@ remoteDb = db.Remote(database)
 @cross_origin(origins='*')
 def remotedata():
     if request.json is not None:
-        remoteDb.add_dump(request.json)
+        remoteDb.add_clickdata(request.json)
         return 'data posted'
     else:
         return 'error in server, data not posted'
