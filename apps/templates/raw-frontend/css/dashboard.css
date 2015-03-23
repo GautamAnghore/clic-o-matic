@@ -4,6 +4,7 @@ body {
 
 .site-container {
     width:100%;
+    margin-bottom: 50px;        
 }
 
 .frame-container {
