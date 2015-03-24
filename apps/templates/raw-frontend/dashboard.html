@@ -17,6 +17,7 @@
     <div class="site-container">
         <div class="frame-container">
             <iframe id="foreign-iframe" frameborder="0" src="http://127.0.0.1:52694/apps/templates/raw-frontend/home.html"></iframe>
+            <canvas id="graph" style="position:absolute; top:0; left:0; display:none;"></canvas>
         </div>
     </div>   
         <!-- Static navbar -->
@@ -34,8 +35,8 @@
 
                 <!-- Left nav -->
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="#" class="white-font">Heatmap</a></li>
-                  <li><a href="#" class="white-font">Click-o-Graph</a></li>
+                  <li class="active"><a href="#" class="white-font" id="heatmap-button">Heatmap</a></li>
+                  <li><a href="#" class="white-font" id="graph-button">Click-o-Graph</a></li>
                 </ul>
                 
                 <ul class="nav navbar-nav">
@@ -82,6 +83,37 @@
     <script type="text/javascript" src="lib/heatmap/heatmap.min.js"></script>
 
     <script type="application/javascript">
+        var datapoints = [{ 'x': 211,
+                          'y': 923,
+                          'value': 1 
+                        }
+                         
+                        ,
+                        { 'x': 1136,
+                          'y': 690,
+                          'value': 3 
+                        }
+                         
+                        ,
+                        { 'x': 1148,
+                          'y': 484,
+                          'value': 1 
+                        }
+                         
+                        ,
+                        { 'x': 442,
+                          'y': 523,
+                          'value': 15 
+                        }
+                         
+                        ,
+                        { 'x': 443,
+                          'y': 523,
+                          'value': 1 
+                        }
+                        ];
+        var heatmapInstance;
+        var graphCanvas,graphInstance;
         var resizeForeignFrame = function (event) {
             var heightJSON = JSON.parse(event.data);
             console.log(heightJSON);
@@ -96,18 +128,22 @@
               blur: .75
             };
             // create heatmap with configuration
-            var heatmapInstance = h337.create(config);
-            document.querySelector('.frame-container').onclick = function(ev) {
-
-            heatmapInstance.addData({
-                x: ev.layerX,
-                y: ev.layerY,
-                value: 1
-              });
-            }
+            heatmapInstance = h337.create(config);
+            heatmapInstance.addData(datapoints);  
+            
+            graphCanvas = document.getElementById('graph');
+            graphCanvas.style.width = document.querySelector(".heatmap-canvas").width;
+            graphCanvas.style.height = document.querySelector(".heatmap-canvas").height;
         }
         
         window.addEventListener("message",resizeForeignFrame,false);
+        
+        document.querySelector('#graph-button').onclick = function () {
+            
+        }
+        document.querySelector('#heatmap-button').onclick = function () {
+        
+        }
         
     </script>
 </body>
