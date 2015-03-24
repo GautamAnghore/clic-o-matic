@@ -1,0 +1,80 @@
+@font-face {
+    font-family:'roboto';
+    src: url('../fonts/roboto/simple/Roboto-Thin.ttf');
+    font-weight:100;
+}
+
+@font-face {
+    font-family:'roboto';
+    src: url('../fonts/roboto/simple/Roboto-Light.ttf');
+    font-weight:200;
+}
+
+@font-face {
+    font-family:'roboto';
+    src: url('../fonts/roboto/simple/Roboto-Regular.ttf');
+    font-weight:300;
+}
+
+@font-face {
+    font-family:'roboto';
+    src: url('../fonts/roboto/simple/Roboto-Bold.ttf');
+    font-weight:400;
+}
+
+@font-face {
+    font-family:'roboto';
+    src: url('../fonts/roboto/simple/Roboto-Black.ttf');
+    font-weight:500;
+}
+
+html {
+    height: 100%;
+}
+
+* {
+    font-family: 'roboto';
+    font-weight: 200;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+.red {
+    background-color: #db3340;
+}
+
+.brown {
+    background-color: #e8b71a;
+}
+
+.cream {
+    background-color: #f7eac8;
+}
+
+.green {
+    background-color: #1fda9a;
+}
+
+.dark-green {
+    background-color: #12ca8b;
+}
+
+.blue{
+    background-color: #28abe3;
+}
+
+.dark-blue{
+    background-color: #1891c3;
+}
+
+.code-red {
+    background-color: #f65a5b;
+}
+
+.dark-code-red {
+    background-color: #e65151;
+}
