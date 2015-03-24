@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import TextField, PasswordField
-from wtforms.validators import Required, Length, EqualTo, Email
+from wtforms.validators import Required, Length, EqualTo, Email, URL
 
 
 class SignupForm(Form):
@@ -28,3 +28,11 @@ class LoginForm(Form):
 
     password = PasswordField('Password',
                              validators=[Required('Please provide a password')])
+
+
+class AddPageForm(Form):
+
+    pageurl = TextField('pageurl',
+                        validators=[Required('Please Provide a url'),
+                                    URL(require_tld=False,
+                                        message=('Please Provide a valid url'))])

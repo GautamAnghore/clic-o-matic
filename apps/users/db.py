@@ -58,7 +58,7 @@ class User():
 
         return user
 
-    def add_page(self, username, pageurl):
+    def add_page_db(self, username, pageurl):
 
         try:
             self.users.update({'_id': username},

@@ -5,6 +5,7 @@ from forms import *
 
 from apps import database
 from apps import Sessions
+from apps import login_required
 
 import db
 
@@ -65,9 +66,7 @@ def login():
 
             if loggedin is not None:
                 sessions.push_username(form.username.data)
-                # flag : stage 1
-                # flag : bug [ add user to session ]
-                return "Logged In"
+                return redirect(url_for('dashboard.dashboard_index'))
             else:
                 # flag : stage 2
                 # add something like alert.error('Wrong Credentials')
@@ -87,6 +86,7 @@ def login():
 
 
 @users.route('/logout/<username>', methods=['GET'])
+@login_required
 def logout(username):
 
     if sessions.pop_username(username) is True:
@@ -95,3 +95,28 @@ def logout(username):
         # flag : stage 3
         # flag : bug [ alert cannot logout ]
         return redirect(url_for('dashboard.dashboard_index'))
+
+
+@users.route('/addpage', methods=['GET', 'POST'])
+@login_required
+def add_page():
+    if request.method == 'POST':
+        # submit
+        form = AddPageForm(request.form)
+
+        if form.validate():
+            status = user.add_page_db(sessions.logged_in(), form.pageurl.data)
+
+            if status:
+                return redirect(url_for('dashboard.dashboard_index', url=form.pageurl.data))
+            else:
+                # flag : stage 3
+                # add something like alert.error('some error, cannot add')
+                return render_template('addpage.html', form=form)
+
+        else:
+            # flag : stage 3
+            # alert.error('Please Provide Appropriate Details')
+            return render_template('addpage.html', form=form)
+    else:
+        return render_template('addpage.html', form=AddPageForm(), page_domain=url_for('master.index', _external=True))

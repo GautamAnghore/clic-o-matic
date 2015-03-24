@@ -1,0 +1,119 @@
+.page-info-area {
+    position: absolute;
+    height:90%;
+    width: 86%;
+    top: 10%;
+    left: 14%;
+}
+
+.form-div {
+    width:750px;
+}
+
+.form-horizontal {
+    position: relative;
+    margin-bottom: 5%;
+}
+
+
+.personal-label {
+    color: #f65a5b;
+    font-family: 'roboto';
+    font-weight: 200;
+    font-size: 20px;
+    padding: 0px;
+}
+
+.form-group-aligner{
+}
+
+.eye-button
+{
+    background-color: #1fda9a;
+    height: 33px;
+    margin-left: 10px;
+    border: 2px solid #1fda9a;
+    color: white;
+    font-family: 'roboto';
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.eye-button:hover {
+    background-color: white;
+    border: 2px solid #1fda9a;
+    color: #1fda9a;
+}
+
+
+#description-textarea {
+    resize: none;
+    height: 120px;
+}
+
+.button {
+    height: 40px;
+    border: none;
+    color: white;
+    font-family: 'roboto';
+    font-weight: 500;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.button:hover {
+    height: 40px;
+    background-color: white;
+    border: 2px solid #1fda9a;
+    color: #1fda9a;
+}
+
+.input-url {
+    height: 50px;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'roboto';
+}
+
+.url-label {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.help-block {
+    margin-bottom: 2px;
+}
+.help-description-block {
+    color:#737373 !important;
+}
+
+
+.code-content {
+    white-space: pre-wrap;
+}
+
+.footer {
+    position:relative;
+    bottom:auto;
+    left:auto;
+}
+
+
+.jumbotron {
+    background: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 200;
+    color: #ccc7c7;
+    margin-bottom: 0px;
+}
+.jumbotron h1 {
+    font-weight: 100;
+    font-size: 60px;
+    color: #f65a5b;
+    margin-bottom: 0px;
+}
+.heading-desc {
+    position: relative;
+    top:-16px;
+}
