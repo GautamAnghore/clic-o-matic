@@ -1,0 +1,166 @@
+{% extends "base-layout.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block includes%}
+	{{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/smartmenus/addons/jquery.smartmenus.bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('dashboard.static',filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="site-container">
+    <div class="frame-container">
+        <iframe id="foreign-iframe" frameborder="0" src="{{ pageurl }}"></iframe>
+        <canvas id="graph" style="position:absolute; top:0; left:0; display:none; z-index:1030;"></canvas>
+    </div>
+</div>   
+ 
+	<!-- Bottom Dashboard Bar -->
+<div class="dashboard navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand white-font" href="{{ url_for('master.index') }}"><b>clic-o-matic</b></a>
+  </div>
+  
+  <div class="navbar-collapse collapse">
+
+    <!-- Left nav -->
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#" class="white-font" id="heatmap-button" >Heatmap</a></li>
+      <li><a href="#" class="white-font" id="graph-button">Click-o-Graph</a></li>
+    </ul>
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#" class="white-font">Page</a>
+            <ul class="dropdown-menu">
+                {% for page in url_list %}
+                  <li><a href="{{ url_for('.dashboard_index', url=page) }}">{{ page }}</a></li>
+                {% endfor %}   
+            </ul>
+      </li>
+    </ul>
+      
+
+    <!-- Right nav -->
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" class="white-font">Menu</a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-header">Options</li>
+                <li><a href="#">Add Page</a></li>
+                <li><a href="#">Clear Dataset</a></li>    
+                <li class="divider"></li>
+                <li class="dropdown-header">Profile</li>
+                <li><a href="#">SignOut</a></li>    
+            </ul>
+        </li>
+    </ul>
+
+  </div><!--/.nav-collapse -->
+
+</div>
+        
+   
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='lib/smartmenus/jquery.smartmenus.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/smartmenus/addons/jquery.smartmenus.bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/heatmap/heatmap.min.js') }}"></script>
+<script type="application/javascript">
+    
+    var datapoints = [{% for datapoint in clickdata -%}
+                        { 'x': {{ datapoint['x'] }},
+                          'y': {{ datapoint['y'] }},
+                          'value': {{ datapoint['value'] }} 
+                        }
+                        {% if not loop.last %} 
+                        ,
+                        {% endif %}
+
+                      {%- endfor %}];
+    
+    var maxValue = 0;
+    for(i in datapoints)
+    {
+      if (datapoints[i].value > maxValue)
+        maxValue = datapoints[i].value;
+    }
+
+    var heatmapInstance;
+    
+    var graphCanvas,graphInstance;
+    var graphBullet = 20;
+
+    var resizeForeignFrame = function (event) {
+        var heightJSON = JSON.parse(event.data);
+        document.querySelector("#foreign-iframe").style.height=heightJSON["height"] + "px";
+        
+
+        var config = {
+          container: document.querySelector('.frame-container'),
+          radius: 80,
+          maxOpacity: .5,
+          minOpacity: 0,
+          blur: .90
+        };
+        // create heatmap with configuration
+        heatmapInstance = h337.create(config);
+        heatmapInstance.addData(datapoints);
+
+        graphCanvas = document.getElementById('graph');
+        graphCanvas.width = document.querySelector(".heatmap-canvas").width;
+        graphCanvas.height = document.querySelector(".heatmap-canvas").height; 
+
+        graphInstance = graphCanvas.getContext("2d"); 
+        graphInstance.globalAlpha = 0.8;
+        
+        graphInstance.strokeStye = "#000000";
+        graphInstance.lineWidth = 2;
+        graphInstance.textAlign = "center";
+        
+        for(i in datapoints)
+        {
+
+          graphInstance.fillStyle = "#ee0000";
+          var bullet = ((datapoints[i].value/maxValue) * graphBullet ) + 10;
+          graphInstance.fillRect(datapoints[i].x-(bullet/2),datapoints[i].y-(bullet/2),bullet,bullet);
+          graphInstance.strokeRect(datapoints[i].x-1-(bullet/2),datapoints[i].y-1-(bullet/2),bullet+2,bullet+2);
+
+          graphInstance.fillStyle = "#fff";
+          graphInstance.font = bullet+"px serif";
+          graphInstance.fillText(datapoints[i].value,datapoints[i].x,datapoints[i].y+(bullet/2)-1,bullet);
+        }  
+    }
+    
+    window.addEventListener("message",resizeForeignFrame,false);
+    
+    document.querySelector('#graph-button').onclick = function () {
+      
+        document.querySelector('#graph-button').parentNode.className = "active";
+        document.querySelector('#heatmap-button').parentNode.className = "";
+        
+        document.querySelector('.heatmap-canvas').style.display = "none";
+        
+        graphCanvas.style.display = "block";
+              
+
+    }
+  
+    document.querySelector('#heatmap-button').onclick = function () {
+      
+        document.querySelector('#graph-button').parentNode.className = "";
+        document.querySelector('#heatmap-button').parentNode.className = "active";
+        
+        document.querySelector('.heatmap-canvas').style.display = "block";
+        
+        graphCanvas.style.display = "none";
+    }
+</script>
+
+{% endblock %}

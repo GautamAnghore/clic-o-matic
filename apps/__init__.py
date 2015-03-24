@@ -21,11 +21,11 @@ from decorators import no_cache, login_required
 master = Blueprint('master', __name__, template_folder='templates', static_folder='static')
 from views import *
 
-# import users blueprint
 from users import users
-# import remote blueprint
 from remote import remote
+from dashboard import dashboard
 
 app.register_blueprint(master)
 app.register_blueprint(users)
 app.register_blueprint(remote)
+app.register_blueprint(dashboard)
