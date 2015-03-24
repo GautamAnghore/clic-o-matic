@@ -66,7 +66,7 @@ def login():
 
             if loggedin is not None:
                 sessions.push_username(form.username.data)
-                return redirect(url_for('dashboard.dashboard_index'))
+                return redirect(url_for('users.add_page'))
             else:
                 # flag : stage 2
                 # add something like alert.error('Wrong Credentials')

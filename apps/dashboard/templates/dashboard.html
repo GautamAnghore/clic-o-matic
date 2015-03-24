@@ -54,8 +54,8 @@ Dashboard
         <li><a href="#" class="white-font">Menu</a>
             <ul class="dropdown-menu">
                 <li class="dropdown-header">Options</li>
-                <li><a href="#">Add Page</a></li>
-                <li><a href="#">Clear Dataset</a></li>    
+                <li><a href="{{ url_for('users.add_page') }}">Add Page</a></li>
+                <li><a href="{{ url_for('remote.cleardata', url=pageurl) }}">Clear Dataset</a></li>    
                 <li class="divider"></li>
                 <li class="dropdown-header">Profile</li>
                 <li><a href="{{ url_for('users.logout', username = user) }}">SignOut</a></li>    

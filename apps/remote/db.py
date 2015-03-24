@@ -58,3 +58,12 @@ class Remote():
             return doc['datapoints']
         else:
             return None
+
+    def delete_clickdata(self, pageurl):
+        # delete the clickdata
+        try:
+            self.collection.remove({'page': pageurl})
+        except pymongo.errors.OperationFailure:
+            print "Mongodb operationFailure db: remote"
+            return False
+        return True
