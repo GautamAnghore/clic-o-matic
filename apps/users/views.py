@@ -34,7 +34,7 @@ def signup():
                 sessions.push_username(form.username.data)
                 # temperory
                 # flag : bug stage 1
-                return redirect(url_for(master.index))
+                return redirect(url_for(users.add_page))
             else:
                 # to be changed with error handling
                 # flag : feature
@@ -66,7 +66,7 @@ def login():
 
             if loggedin is not None:
                 sessions.push_username(form.username.data)
-                return redirect(url_for('users.add_page'))
+                return redirect(url_for('dashboard.dashboard_index'))
             else:
                 # flag : stage 2
                 # add something like alert.error('Wrong Credentials')
