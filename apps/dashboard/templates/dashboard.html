@@ -58,7 +58,7 @@ Dashboard
                 <li><a href="#">Clear Dataset</a></li>    
                 <li class="divider"></li>
                 <li class="dropdown-header">Profile</li>
-                <li><a href="#">SignOut</a></li>    
+                <li><a href="{{ url_for('users.logout', username = user) }}">SignOut</a></li>    
             </ul>
         </li>
     </ul>
@@ -113,6 +113,7 @@ Dashboard
         heatmapInstance = h337.create(config);
         heatmapInstance.addData(datapoints);
 
+        // create clickograph
         graphCanvas = document.getElementById('graph');
         graphCanvas.width = document.querySelector(".heatmap-canvas").width;
         graphCanvas.height = document.querySelector(".heatmap-canvas").height; 

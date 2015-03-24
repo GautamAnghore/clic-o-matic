@@ -84,3 +84,14 @@ def login():
             return redirect(url_for('master.index'))
         else:
             return render_template('login.html', form=LoginForm())
+
+
+@users.route('/logout/<username>', methods=['GET'])
+def logout(username):
+
+    if sessions.pop_username(username) is True:
+        return redirect(url_for('master.index'))
+    else:
+        # flag : stage 3
+        # flag : bug [ alert cannot logout ]
+        return redirect(url_for('dashboard.dashboard_index'))

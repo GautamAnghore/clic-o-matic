@@ -33,6 +33,6 @@ def dashboard_index():
             # page exists
             # get page data
             clickdata = remotedb.get_clickdata(page_url)
-            return render_template('dashboard.html', pageurl=page_url, url_list=url_list, clickdata=clickdata)
+            return render_template('dashboard.html', pageurl=page_url, url_list=url_list, clickdata=clickdata, user=sessions.logged_in())
         else:
             return redirect(url_for('.dashboard_index'))
