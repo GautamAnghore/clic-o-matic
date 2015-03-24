@@ -45,3 +45,16 @@ class Remote():
                 return False
 
         return True
+
+    def get_clickdata(self, pageurl):
+        # get the dataset for url
+        try:
+            doc = self.collection.find_one({'page': pageurl})
+        except:
+            print "Mongodb error"
+            return None
+
+        if doc is not None:
+            return doc['datapoints']
+        else:
+            return None
