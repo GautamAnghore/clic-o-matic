@@ -34,7 +34,7 @@ def signup():
                 sessions.push_username(form.username.data)
                 # temperory
                 # flag : bug stage 1
-                return redirect(url_for(users.add_page))
+                return redirect(url_for('users.add_page'))
             else:
                 # to be changed with error handling
                 # flag : feature
@@ -112,11 +112,11 @@ def add_page():
             else:
                 # flag : stage 3
                 # add something like alert.error('some error, cannot add')
-                return render_template('addpage.html', form=form)
+                return render_template('addpage.html', form=form, user=sessions.logged_in())
 
         else:
             # flag : stage 3
             # alert.error('Please Provide Appropriate Details')
-            return render_template('addpage.html', form=form)
+            return render_template('addpage.html', form=form, user=sessions.logged_in())
     else:
-        return render_template('addpage.html', form=AddPageForm(), page_domain=url_for('master.index', _external=True))
+        return render_template('addpage.html', form=AddPageForm(), page_domain=url_for('master.index', _external=True), user=sessions.logged_in())

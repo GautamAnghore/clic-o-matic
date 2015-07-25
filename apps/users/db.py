@@ -71,7 +71,7 @@ class User():
 
     def check_page_exists(self, pageurl):
         # checks page exists of not for ajax requests
-        # not need to check the user
+        # no need to check the user
         try:
             page = self.users.find_one({'pages': pageurl})
         except:
@@ -93,8 +93,11 @@ class User():
             return None
 
         if page is not None:
-            print page
-            return page['pages'][0]
+            #print page
+            if not page['pages']:
+                return None
+            else:
+                return page['pages'][0]
         else:
             return None
 

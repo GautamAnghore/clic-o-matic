@@ -24,7 +24,7 @@ def dashboard_index():
         if page_url is not None:
             return redirect(url_for('.dashboard_index', url=page_url))
         else:
-            return redirect(url_for('master.index'))
+            return redirect(url_for('users.add_page'))
     else:
         page_url = request.args['url']
         url_list = user.get_user_pages(page_url, sessions.logged_in())

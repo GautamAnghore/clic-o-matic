@@ -16,6 +16,10 @@ Add Page : clic-o-matic
     <h1>clic-o-matic</h1>
     <span class="heading-desc">silently observe click behaviour of your visitors with heatmap and click-o-graph</span>
 </div>
+<div class="col-md-4 col-md-offset-8">
+    <a href="{{ url_for('dashboard.dashboard_index') }}" role="button" class="btn btn-primary">Dashboard</a>
+    <a href="{{ url_for('users.logout', username = user) }}" role="button" class="btn btn-primary">Logout</a>
+</div>
 <div class="col-md-8 col-md-offset-2 form-div">
     <div class="form-wrapper">
 
